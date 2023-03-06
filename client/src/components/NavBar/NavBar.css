@@ -1,0 +1,34 @@
+.MuiAppBar-root {
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
+  #Logo{
+    width: 54px;
+  }
+  .MuiToolbar-root {
+    justify-content: space-between;
+  }
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .btn {
+    background-color: #F29913;
+    color: #fff;
+    border: none;
+    padding: 11px 26px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .button-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 10px;
+    margin-right: 0%;
+  }
+  
+  .button-container button:first-child {
+    margin-right: 30px;
+  }
