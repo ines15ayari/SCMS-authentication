@@ -1,0 +1,82 @@
+.container {
+  display: flex;
+}
+
+.image2 {
+  width: 490px;
+  object-fit: 'cover';
+  margin-top: 80px;
+  margin-left: 30px;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 80px;
+  width: 500px;
+  margin-left: 280px;
+}
+
+.formField {
+  margin: 8px;
+  width: 100%;
+}
+
+.submitButton {
+  margin: 30px 0 16px;
+  background-color: #F29913;
+}
+
+.MuiButton-containedPrimary {
+  background-color: #F29913;
+}
+
+h1 {
+  font-family: 'Poppins';
+  font-weight: 'bold';
+  font-size: 2.5rem;
+}
+
+  
+
+.Group9 {
+  background-color: rgba(242, 152, 18, 1);
+  width: 408px;
+  height: 66.82154083251953px;
+  display: 'flex';
+  flex-direction: 'row';
+  justify-content: 'flex-start';
+  align-items: 'flex-start';
+  padding: 0;
+  margin-right: 0;
+  margin-bottom: 0;
+  flex-shrink: 1;
+  align-self: 'auto';
+  box-sizing: 'border-box';
+  border-radius: 0px 0px 0px 0px;
+  border-width: 0;
+  border-color: 'transparent';
+  border-style: 'none';
+  position: 'relative';
+}
+
+.text{
+  color: rgba(255, 255, 255, 1);
+  width: '87px';
+  height: 'auto';
+  text-align: 'left';
+  line-height: 'normal';
+  align-self: 'auto';
+  position: 'absolute';
+  top: 21;
+  left: 169;
+  font-family: 'Poppins';
+  font-size: 16;
+  font-stretch: 'normal';
+  font-style: 'Medium';
+  font-weight: 500;
+  text-decoration: 'none';
+}
+  

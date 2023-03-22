@@ -2,9 +2,6 @@
     background-color: transparent !important;
     box-shadow: none !important;
   }
-  #Logo{
-    width: 54px;
-  }
   .MuiToolbar-root {
     justify-content: space-between;
   }
@@ -32,3 +29,7 @@
   .button-container button:first-child {
     margin-right: 30px;
   }
+  .formField:not(:first-child) {
+    margin-top: 16px;
+  }
+  
