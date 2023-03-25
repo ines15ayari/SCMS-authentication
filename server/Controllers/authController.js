@@ -2,12 +2,23 @@ const User = require('../Models/user')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
+//Get the users
+const GetUsers = async (req, res) => {
+  try {
+    const users = await User.find();
+    res.json(users);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server Error');
+  }
+}
+
 //Register the new User
 const SignUp = async (req, res) => {
   const user = req.body;
 
   try {
-    const foundUser = await User.findOne({ email: user.email })
+    const foundUser = await User.findOne({ userName: user.userName })
     if (foundUser) {
       return res.status(401).json({ msg: "User already exist" })
     }
@@ -15,14 +26,12 @@ const SignUp = async (req, res) => {
 
     const newUser = new User({
       userName: user.userName,
-      email: user.email,
       password: hashedPassword,
     })
 
     await newUser.save();
     const token = jwt.sign({
       userName: newUser.userName,
-      email: newUser.email,
       id: newUser._id
     }, process.env.KEY);
     res.status(200).json({ newUser, token });
@@ -35,13 +44,12 @@ const SignUp = async (req, res) => {
 const SignIn = async (req, res) => {
   const user = req.body;
   try {
-    const foundUser = await User.findOne({ email: user.email });
+    const foundUser = await User.findOne({ userName: user.userName });
     if (foundUser) {
       const result = await bcrypt.compare(user.password, foundUser.password);
       if (result === true) {
         const token = jwt.sign(
           {
-            email: foundUser.email,
             id: foundUser._id,
           }, process.env.KEY);
         res.status(200).json({ foundUser, token },);
@@ -58,6 +66,16 @@ const SignIn = async (req, res) => {
   }
 }
 
+//Delete User
+const DeleteUsers = async (req, res) => {
+  const userId = req.params.id;
+  try {
+    await User.findOneAndDelete({ _id: userId });
+    res.status(200).json({ message: 'User deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'Server error' });
+  }
+}
 
 
-module.exports = { SignIn, SignUp }
+module.exports = { SignIn, SignUp, GetUsers, DeleteUsers }

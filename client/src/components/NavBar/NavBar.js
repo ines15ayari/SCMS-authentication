@@ -4,12 +4,9 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import './NavBar.css';
 
 import { Link } from 'react-router-dom';
-import signUp from '../SignIn/signIn';
 
 
 export default function ButtonAppBar() {
@@ -30,9 +27,9 @@ export default function ButtonAppBar() {
               About Us
             </Link>
           </Box>
-          <div class="button-container" >
+          <div className="button-container" >
           <Link to="/login" >
-            <Button class="btn" className="login-button" color="inherit">Sign In</Button>
+            <Button className='btn' className="login-button" color="inherit">Sign In</Button>
           </Link>
           </div>
 

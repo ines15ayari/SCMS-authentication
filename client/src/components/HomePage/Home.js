@@ -1,11 +1,10 @@
 import React from 'react'
 import './Home.css';
-import Image1 from './Image1.png'
 import Navbar from '../NavBar/NavBar';
 import { Button } from '@mui/material';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import { Link } from 'react-router-dom';
-
+import image1 from './image1.png'
 
  
 
@@ -25,7 +24,7 @@ function Home() {
       </div>
 
 
-      <img id="image1" src={Image1} alt="My Image" />
+      <img id="image1" src={image1} alt="My Image" />
       
     </div>
   )

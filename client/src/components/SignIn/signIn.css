@@ -79,4 +79,8 @@ h1 {
   font-weight: 500;
   text-decoration: 'none';
 }
-  
+.errorMsg {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+}

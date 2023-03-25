@@ -1,22 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Navbar from '../NavBar/NavBar';
 import Box from '@material-ui/core/Box';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import PhoneIcon from '@material-ui/icons/Phone';
-import Grid from '@material-ui/core/Grid';
-import Image2 from './image2.png'
 import './signIn.css'
 import axios from 'axios';
+import image2 from './image2.png'
 
 function SignIn() {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
 
   const handleSignIn = () => {
-    axios.post('http://localhost:8000/auth//sign-In', {
+    axios.post('http://localhost:8000/auth/sign-In', {
       userName: userName,
       password: password
     })
@@ -27,14 +24,15 @@ function SignIn() {
     })
     .catch((error) => {
       console.log(error);
-      // Show an error message to the user
+      const errorMsg = 'Wrong UserName or Password. Please Try Again.';
+      setError(errorMsg);
     });
   };
   return (
     <>
     <Navbar />
     <div className="container">
-      <img src={Image2} alt="Some image" className="image2" />
+      <img src={image2} alt="Some image" className="image2" />
       <Box>
         <div className="formContainer">
           <h1>Sign In</h1>
@@ -55,6 +53,7 @@ function SignIn() {
             type="password"
             fullWidth
           />
+          {error && <p className="errorMsg">{error}</p>}
           <Button variant="contained"
             color="primary"className="submitButton"
             onClick={handleSignIn} 
