@@ -24,7 +24,7 @@ function SignIn() {
     })
     .catch((error) => {
       console.log(error);
-      const errorMsg = 'Wrong UserName or Password. Please Try Again.';
+      const errorMsg = 'Wrong User name or Password. Please Try Again.';
       setError(errorMsg);
     });
   };
