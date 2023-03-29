@@ -5,11 +5,13 @@ import { Button } from "@mui/material";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import { Link } from "react-router-dom";
 import image1 from "./Image1.png";
+import Shdw1 from "./Shdw1.png";
+import Shdw2 from "./Shdw2.png";
 
 function Home() {
   return (
     <div className="home-page">
-      <Navbar />
+      <Navbar isHomePage={true} />
       <div
         className="home-page-content"
         style={{ fontFamily: "imprima, sans-serif", color: "black" }}
@@ -23,6 +25,7 @@ function Home() {
         <br />
 
         <Button
+         style={{  textTransform: "none"}}
           component={Link}
           to="/login"
           variant="contained"
@@ -35,7 +38,7 @@ function Home() {
         </Button>
       </div>
 
-      <img id="image1" src={image1} alt="My Image" />
+      <img id="image1" src={image1} alt="My Image1" />
     </div>
   );
 }

@@ -13,7 +13,12 @@ import { AccountCircle } from "@mui/icons-material";
 import "./NavBar.css";
 
 // Add the "isProjectsPage" prop to the NavBar component
-const NavBar = ({ isAuthenticated = false, isProjectsPage = false }) => {
+const NavBar = ({
+  isAuthenticated = false,
+  isProjectsPage = false,
+  isHomePage = false,
+  isSignInPage = false,
+}) => {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleProfileMenuOpen = (event) => {
@@ -36,24 +41,36 @@ const NavBar = ({ isAuthenticated = false, isProjectsPage = false }) => {
       className="app-bar"
     >
       <Toolbar>
-        <Typography variant="h6" className="page-title">
+        <Typography
+          variant="h6"
+          className="page-title"
+          style={{ fontWeight: "bold" }}
+        >
           ResolveNow
         </Typography>
+
         <div className="nav-links-container">
           {/* Only render the "Home" button if the "isProjectsPage" prop is set to false */}
           {!isProjectsPage && (
             <Button
-              style={{ color: "black", marginRight: "40px" }}
+              style={{
+                color: isHomePage ? "white" : "black",
+                textTransform: "none",
+                marginRight: "40px",
+                fontWeight: "bold",
+                fontFamily: "",
+              }}
               component={Link}
               to="/"
               variant="text"
               className="nav-link"
+              disabled={isHomePage}
             >
               Home
             </Button>
           )}
           <Button
-            style={{ color: "black", marginRight: "40px" }}
+            style={{ color: "black", marginRight: "40px",  textTransform: "none", fontWeight: "bold" }}
             component={Link}
             to="/about"
             variant="text"
@@ -64,11 +81,17 @@ const NavBar = ({ isAuthenticated = false, isProjectsPage = false }) => {
           {isAuthenticated && isProjectsPage && (
             <>
               <Button
-                style={{ color: "black", marginRight: "40px" }}
+                style={{
+                  color: isProjectsPage ? "white" : "black",
+                  textTransform: "none",
+                  marginRight: "40px",
+                  fontWeight: "bold",
+                }}
                 component={Link}
                 to="/projects"
                 variant="text"
                 className="nav-link"
+                disabled={isProjectsPage}
               >
                 Projects
               </Button>
@@ -106,10 +129,16 @@ const NavBar = ({ isAuthenticated = false, isProjectsPage = false }) => {
           </>
         ) : (
           <Button
+            disabled={isSignInPage}
             component={Link}
             to="/login"
             variant="contained"
-            style={{ backgroundColor: "#F29913" }}
+            style={{
+              backgroundColor: "#F29913",
+              fontWeight: "bold",
+              textTransform: "none",
+              color: isSignInPage ? "#BFBFBF" : "white",
+            }}
             className="sign-in-btn"
           >
             Sign In
