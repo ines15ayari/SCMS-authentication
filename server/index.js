@@ -4,6 +4,9 @@ const cors = require('cors'); // import the cors package
 
 const connectDb = require('./Config/connectDb')
 const authRoute = require('./Routes/authRoute')
+const projectRoute = require('./Routes/projectRoute');
+const ticketRoute = require('./Routes/ticketRoute')
+
 require('dotenv').config({ path:"./.env"})
 
 const App = express();
@@ -21,4 +24,9 @@ App.use(cors({
 connectDb()
 //Middleware globale
 App.use(express.json())
+
+// Routes middleware
 App.use('/auth',authRoute)
+App.use('/projects', projectRoute);
+App.use('/tickets', ticketRoute);
+
