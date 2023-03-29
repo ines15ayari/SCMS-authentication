@@ -12,7 +12,7 @@ const {
 router.post('/create', createTicket);
 
 // Get all tickets
-router.get('/', getAllTickets);
+router.get('/:projectId', getAllTickets);
 
 // Get a ticket by ID
 router.get('/:id', getTicketById);

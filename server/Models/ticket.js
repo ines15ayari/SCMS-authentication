@@ -1,25 +1,31 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+
 const ticketSchema = mongoose.Schema({
-  Name : {
+  Name: {
     type: String,
     required: true,
   },
-  Description : {
+  Description: {
     type: String,
     required: true,
   },
-  Date : {
+  Date: {
     type: Date,
     required: true,
   },
   Priority: {
     type: String,
-    enum: ["high", "medium", "low"],
+    enum: ['high', 'medium', 'low'],
     required: true,
   },
   image: {
     type: String,
-  }
-})
+  },
+  project: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Project',
+    required: true,
+  },
+});
 
-module.exports = mongoose.model('ticket', ticketSchema)
+module.exports = mongoose.model('Ticket', ticketSchema);
