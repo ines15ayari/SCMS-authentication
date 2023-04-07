@@ -84,3 +84,8 @@ h1 {
   font-weight: bold;
   margin-top: 10px;
 }
+.textFieldContainer {
+  width: 100%;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}

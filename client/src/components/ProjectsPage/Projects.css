@@ -1,0 +1,65 @@
+.Projects {
+    background-color: #A4ABB2;
+    min-height: 100vh;
+  }
+  
+  .Image3 {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* Fill the container while maintaining aspect ratio */
+    margin: 1rem auto; /* Center the image horizontally */
+    display: block; /* Required for margin auto to work */
+  }
+  
+  .Project{
+    width: 100%; 
+    max-width: 200px; 
+    height: auto;
+  }
+  
+  .search-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+  }
+  
+  .search-input {
+    width: 50%;
+  }
+  
+  .projects-container {
+    display: flex;
+    background-color: #808080;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+  }
+  
+  .arrow-left,
+  .arrow-right {
+    color: #000;
+  }
+  .project-item {
+    display: inline-block;
+    padding: 10px;
+    margin: 0 10px;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    transition: 0.3s;
+  }
+  
+  .project-item:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  .search-input {
+    border-radius: 25px !important;
+    width: 100%;
+  }
+  
+  .search-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
