@@ -49,6 +49,7 @@ function Projects() {
     }
   };
 
+
   return (
     <div className="Projects">
       <NavBar isAuthenticated={isAuthenticated} isProjectsPage={true} />
@@ -84,18 +85,13 @@ function Projects() {
               key={index}
               to={`/project/${project.name}`}
               className="project-item"
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
             >
               <img
                 src={Project}
                 alt={`Image for ${project.name}`}
                 className="Project"
               />
-              {project.name}
+              <h3>{project.name}</h3>
             </Link>
           ))}
         <IconButton className="arrow-right" onClick={handleClickNext}>
