@@ -11,16 +11,16 @@ const {
 // Create a new ticket
 router.post('/create', createTicket);
 
-// Get all tickets
+// Get all tickets by projectId
 router.get('/:projectId', getAllTickets);
 
 // Get a ticket by ID
 router.get('/:id', getTicketById);
 
-// Update a ticket
+// Update a ticket by ID
 router.put('/:id', updateTicketById);
 
-// Delete a ticket
+// Delete a ticket by ID
 router.delete('/:id', deleteTicketById);
 
 module.exports = router;

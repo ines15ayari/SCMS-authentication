@@ -1,17 +1,33 @@
 const Ticket = require('../Models/ticket');
+const Project = require('../Models/projects');
+const User = require('../Models/user');
 
-// Add a new Ticket
+
+
 const createTicket = async (req, res) => {
-  const { Name, Description, Date, image, Priority, project } = req.body;
+  const { Name, Description, Date, image, Priority, ProjectName, UserName } = req.body;
 
   try {
+    // Check if project name exists in the database
+    const existingProject = await Project.findOne({ Name: ProjectName });
+    if (!existingProject) {
+      return res.status(400).json({ error: 'Project name does not match any existing projects. Please try again with an existing project name.' });
+    }
+
+    // Check if user exists in the database
+    const existingUser = await User.findOne({ userName: UserName });
+    if (!existingUser) {
+      return res.status(400).json({ error: 'User not found. Please provide a valid UserName.' });
+    }
+
     const newTicket = new Ticket({
       Name,
       Description,
       Date,
       image,
       Priority,
-      project
+      ProjectName,
+      UserName: existingUser.userName // Set the userName field to the userName of the existing user
     });
 
     await newTicket.save();
@@ -22,7 +38,8 @@ const createTicket = async (req, res) => {
   }
 };
 
-//Get ALL tickets for a given project
+
+// Get all tickets by projectId
 const getAllTickets = async (req, res) => {
   const { page = 1, limit = 10, projectId } = req.query;
 
@@ -45,7 +62,6 @@ const getAllTickets = async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 };
-
 
 // Get ticket by ID
 const getTicketById = async (req, res) => {

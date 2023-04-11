@@ -11,19 +11,22 @@ const ticketSchema = mongoose.Schema({
   },
   Date: {
     type: Date,
-    required: true,
+    default: Date.now, // Set the default value to the current date and time
   },
   Priority: {
     type: String,
     enum: ['high', 'medium', 'low'],
     required: true,
   },
-  image: {
+  Image: {
     type: String,
   },
-  project: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Project',
+  ProjectName: {
+    type: String,
+    required: true,
+  },
+  UserName: {
+    type: String,
     required: true,
   },
 });

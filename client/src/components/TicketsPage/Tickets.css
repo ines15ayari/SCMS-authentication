@@ -21,7 +21,7 @@
 }
 
 .priority-select {
-  margin-right: 1rem;
+  margin-right: 1rem; 
 }
 
 .tickets-container {
@@ -30,8 +30,8 @@
 
 .add-ticket-button {
   position: fixed;
-  top: 400px;
-  left: 1380px;
+  left: 92%;
+  top: 320px;
 }
 .dialog-content {
   display: flex;
@@ -42,10 +42,7 @@
   overflow: hidden;
   min-height: 100vh;
 }
-.priority-select {
-  margin-left: 1rem;
-  padding-left: 70px;
-}
+
 .tickets-container {
   display: flex;
   flex-wrap: wrap;

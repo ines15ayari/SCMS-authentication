@@ -2,8 +2,8 @@ const User = require("../Models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-//Get the users
-const GetUsers = async (req, res) => {
+// Get the users
+const getUsers = async (req, res) => {
   try {
     const users = await User.find();
     res.json(users);
@@ -13,14 +13,14 @@ const GetUsers = async (req, res) => {
   }
 };
 
-//Register the new User
-const SignUp = async (req, res) => {
+// Register a new user
+const signUp = async (req, res) => {
   const user = req.body;
 
   try {
     const foundUser = await User.findOne({ userName: user.userName });
     if (foundUser) {
-      return res.status(401).json({ msg: "User already exist" });
+      return res.status(401).json({ msg: "User already exists" });
     }
     const hashedPassword = await bcrypt.hash(user.password, 10);
 
@@ -39,12 +39,12 @@ const SignUp = async (req, res) => {
     );
     res.status(200).json({ newUser, token });
   } catch (error) {
-    return res.status(400).json({ msg: "Register failed" });
+    return res.status(400).json({ msg: "Registration failed" });
   }
 };
 
-//User Login
-const SignIn = async (req, res) => {
+// User Login
+const signIn = async (req, res) => {
   const user = req.body;
   try {
     const foundUser = await User.findOne({ userName: user.userName });
@@ -60,18 +60,18 @@ const SignIn = async (req, res) => {
         res.status(200).json({ foundUser, token });
       }
       if (result === false) {
-        res.status(402).json({ msg: "wrong password" });
+        res.status(402).json({ msg: "Wrong password" });
       }
     } else {
-      res.status(401).json({ msg: "you need to register before" });
+      res.status(401).json({ msg: "You need to register first" });
     }
   } catch (error) {
-    res.status(400).json({ msg: "server error" });
+    res.status(400).json({ msg: "Server error" });
   }
 };
 
-//Delete User
-const DeleteUsers = async (req, res) => {
+// Delete User
+const deleteUsers = async (req, res) => {
   const userId = req.params.id;
   try {
     await User.findOneAndDelete({ _id: userId });
@@ -82,8 +82,8 @@ const DeleteUsers = async (req, res) => {
 };
 
 module.exports = {
-  SignIn,
-  SignUp,
-  GetUsers,
-  DeleteUsers,
+  signIn,
+  signUp,
+  getUsers,
+  deleteUsers,
 };

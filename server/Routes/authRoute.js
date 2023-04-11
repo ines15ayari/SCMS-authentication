@@ -1,9 +1,10 @@
-const express = require('express')
-const Router = express.Router()
-const { SignIn, SignUp, GetUsers, DeleteUsers } = require('../Controllers/authController')
+const express = require('express');
+const router = express.Router();
+const { signIn, signUp, getUsers, deleteUsers } = require('../controllers/authController');
 
-Router.post('/sign-In', SignIn);
-Router.post('/sign-Up',SignUp)
-Router.get('/users',GetUsers);
-Router.delete('/users/:id', DeleteUsers);
-module.exports = Router;
+router.post('/sign-in', signIn);
+router.post('/sign-up', signUp);
+router.get('/users', getUsers);
+router.delete('/users/:id', deleteUsers);
+
+module.exports = router;
