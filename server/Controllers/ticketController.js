@@ -3,7 +3,7 @@ const Project = require('../Models/projects');
 const User = require('../Models/user');
 
 
-
+//Add a new ticket in a project
 const createTicket = async (req, res) => {
   const { Name, Description, Date, image, Priority, ProjectName, UserName } = req.body;
 
@@ -38,23 +38,15 @@ const createTicket = async (req, res) => {
   }
 };
 
-
-// Get all tickets by projectId
+// Get all tickets by project name
 const getAllTickets = async (req, res) => {
-  const { page = 1, limit = 10, projectId } = req.query;
+  const projectName = req.params.projectName;
 
   try {
-    const query = { project: projectId };
-    const tickets = await Ticket.find(query)
-      .limit(limit * 1)
-      .skip((page - 1) * limit)
-      .exec();
-
-    const count = await Ticket.countDocuments(query);
+    const query = { ProjectName: projectName };
+    const tickets = await Ticket.find(query).exec();
 
     res.json({
-      totalPages: Math.ceil(count / limit),
-      currentPage: page,
       tickets
     });
   } catch (error) {
@@ -62,6 +54,28 @@ const getAllTickets = async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 };
+
+// Get a ticket by its name for a specific project
+const getTicketByName = async (req, res) => {
+  const { projectName, ticketName } = req.params;
+
+  try {
+    const ticketNameRegex = new RegExp(`^${ticketName}`, 'i'); // Case-insensitive search for tickets starting with ticketName
+    const tickets = await Ticket.find({ ProjectName: projectName, Name: { $regex: ticketNameRegex } });
+
+    if (!tickets || tickets.length === 0) {
+      return res.status(404).json({ error: 'No matching tickets found' });
+    }
+
+    res.json(tickets);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server error' });
+  }
+};
+
+
+
 
 // Get ticket by ID
 const getTicketById = async (req, res) => {
@@ -78,13 +92,14 @@ const getTicketById = async (req, res) => {
   }
 };
 
-// Update ticket by ID
-const updateTicketById = async (req, res) => {
-  const ticketId = req.params.id;
-  const { Name, Description, Date, image, Priority, project } = req.body;
+// Update ticket by Name for a specific Project Name
+const updateTicketByName = async (req, res) => {
+  const projectName = req.params.projectName;
+  const ticketName = req.params.name;
+  const { Name, Description, Date, image, Priority } = req.body;
 
   try {
-    const ticket = await Ticket.findById(ticketId);
+    const ticket = await Ticket.findOne({ Name: ticketName, ProjectName: projectName });
     if (!ticket) {
       return res.status(404).json({ msg: 'Ticket not found' });
     }
@@ -94,7 +109,6 @@ const updateTicketById = async (req, res) => {
     ticket.Date = Date;
     ticket.image = image;
     ticket.Priority = Priority;
-    ticket.project = project;
     await ticket.save();
     res.json(ticket);
   } catch (error) {
@@ -103,11 +117,13 @@ const updateTicketById = async (req, res) => {
   }
 };
 
-// Delete ticket by ID
-const deleteTicketById = async (req, res) => {
-  const ticketId = req.params.id;
+// Delete ticket by Name for a specific Project Name
+const deleteTicketByName = async (req, res) => {
+  const projectName = req.params.projectName;
+  const ticketName = req.params.name;
+
   try {
-    const ticket = await Ticket.findById(ticketId);
+    const ticket = await Ticket.findOne({ Name: ticketName, ProjectName: projectName });
     if (!ticket) {
       return res.status(404).json({ msg: 'Ticket not found' });
     }
@@ -122,7 +138,8 @@ const deleteTicketById = async (req, res) => {
 module.exports = {
   createTicket,
   getAllTickets,
+  getTicketByName,
   getTicketById,
-  updateTicketById,
-  deleteTicketById
+  updateTicketByName,
+  deleteTicketByName
 };
