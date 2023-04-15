@@ -108,9 +108,7 @@ function Tickets() {
                 label="Priority"
                 className="priority-select"
               >
-                <MenuItem value="">
-                  <em>Priority</em>
-                </MenuItem>
+                
                 <MenuItem value="High">High</MenuItem>
                 <MenuItem value="Medium">Medium</MenuItem>
                 <MenuItem value="Low">Low</MenuItem>
