@@ -1,4 +1,3 @@
-// NavBar.js
 import React, { useState } from "react";
 import {
   AppBar,
@@ -7,9 +6,10 @@ import {
   Button,
   Menu,
   MenuItem,
+  Avatar,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-import { AccountCircle } from "@mui/icons-material";
+import profilePicture from './profilePic.png';
 import "./NavBar.css";
 
 // Add the "isProjectsPage" prop to the NavBar component
@@ -30,7 +30,6 @@ const NavBar = ({
   };
 
   const handleLogout = () => {
-    // Add your logout logic here
     setAnchorEl(null);
   };
 
@@ -100,7 +99,9 @@ const NavBar = ({
         </div>
         {isAuthenticated && isProjectsPage ? (
           <>
-            <AccountCircle
+              <Avatar
+              alt="Mohab Alfarra"
+              src={profilePicture}
               fontSize="large"
               onClick={handleProfileMenuOpen}
               style={{ cursor: "pointer" }}

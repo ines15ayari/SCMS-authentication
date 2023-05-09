@@ -1,124 +1,56 @@
 .Tickets {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+  position: relative;
   min-height: 100vh;
-  background-color: #f2f2f200;
+  padding-bottom: 50px;
 }
 
-.tickets-wrapper {
+.content-paper {
+  position: relative;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
+  justify-content: space-between;
+  min-height: calc(100vh - 64px); /* Adjust this value according to the height of your NavBar */
+  margin: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 10px;
 }
 
-.tickets-content {
+.project-title-container {
   display: flex;
-  flex-direction: column;
-  width: 100%;
+  justify-content: center;
+  margin-top: 20px;
 }
 
-.ticket-search-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1rem;
-  margin-bottom: 2rem;
+.project-title {
+  font-weight: bold;
+  color: #444;
 }
 
-.ticket-search-input {
-  flex: 1;
+.search-controls-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 10px;
 }
 
-.priority-select {
-  flex: 1;
+.search-input {
+  width: 300px;
 }
+
+.priority-dropdown {
+  min-width: 150px;
+  background-color: #f5f5f5;
+  margin-left: 10px;
+}
+.status-dropdown {
+  min-width: 150px;
+  background-color: #f5f5f5;
+  margin-left: 10px;
+}
+
 
 .tickets-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1rem;
+  /* Add your preferred style for the tickets container */
 }
-
-.ticket {
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  border-radius: 0.5rem;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  overflow: hidden;
-  transition: transform 0.3s ease;
-}
-
-.ticket:hover {
-  transform: translateY(-5px);
-}
-
-.ticket-image {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-}
-
-.ticket-info {
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-}
-
-.ticket-info h3 {
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
-}
-
-.add-ticket-button {
-  position: fixed;
-  bottom: 4rem; /* Change the bottom value to move the button down vertically */
-  right: 2rem;
-  background-color: #F29913;
-}
-
-.dialog-content {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-@media (max-width: 768px) {
-  .ticket-info h3 {
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .ticket-info h3 {
-    font-size: 0.8rem;
-  }
-}
-
-.dialog-content {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 1rem 2rem;
-}
-
-.dialog-actions {
-  padding: 1rem 2rem;
-}
-
-.choose-file-button {
-  background-color: #A4ABB2;
-  color: white;
-  text-transform: none;
-}
-
-.add-ticket-button {
-  background-color: #F29913;
-  color: white;
-  text-transform: none;
-}
-
