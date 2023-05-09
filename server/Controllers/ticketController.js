@@ -5,7 +5,7 @@ const User = require('../Models/user');
 
 //Add a new ticket in a project
 const createTicket = async (req, res) => {
-  const { Name, Description, Date, image, Priority, ProjectName, UserName } = req.body;
+  const { Name, Description, Date, Image, Priority, ProjectName, UserName } = req.body;
 
   try {
     // Check if project name exists in the database
@@ -24,7 +24,7 @@ const createTicket = async (req, res) => {
       Name,
       Description,
       Date,
-      image,
+      Image,
       Priority,
       ProjectName,
       UserName: existingUser.userName // Set the userName field to the userName of the existing user
@@ -43,8 +43,13 @@ const getAllTickets = async (req, res) => {
   const projectName = req.params.projectName;
 
   try {
-    const query = { ProjectName: projectName };
-    const tickets = await Ticket.find(query).exec();
+    const project = await Project.findOne({ Name: projectName });
+
+    if (!project) {
+      return res.status(404).json({ error: 'Project not found' });
+    }
+
+    const tickets = await Ticket.find({ ProjectName: projectName }).exec();
 
     res.json({
       tickets

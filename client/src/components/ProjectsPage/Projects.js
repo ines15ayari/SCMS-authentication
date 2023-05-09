@@ -9,6 +9,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Image3 from "./Image3.png";
 import Project from "./Project.png";
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
 function Projects() {
   const [search, setSearch] = useState("");
@@ -17,25 +18,28 @@ function Projects() {
   const projectsPerPage = 4;
   const isAuthenticated = true;
 
-  const projects = [
-    { name: "Project 1", image: "path/to/image1.jpg" },
-    { name: "Project 2", image: "path/to/image2.jpg" },
-    { name: "Project 3", image: "path/to/image3.jpg" },
-    { name: "Project 4", image: "path/to/image1.jpg" },
-    { name: "Project 5", image: "path/to/image2.jpg" },
-    { name: "Project 6", image: "path/to/image3.jpg" },
-    { name: "Project 7", image: "path/to/image3.jpg" },
-    { name: "Project 8", image: "path/to/image3.jpg" },
-    { name: "Project 9", image: "path/to/image3.jpg" },
-  ];
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    fetchProjects();
+  }, []);
+
+  const fetchProjects = async () => {
+    try {
+      const res = await axios.get('http://localhost:8000/projects');
+      setProjects(res.data);
+    } catch (error) {
+      console.error('Error fetching projects:', error);
+    }
+  };
 
   useEffect(() => {
     setFilteredProjects(
       projects.filter((project) =>
-        project.name.toLowerCase().includes(search.toLowerCase())
+        project.Name.toLowerCase().includes(search.toLowerCase())
       )
     );
-  }, [search]);
+  }, [search, projects]);
 
   const handleClickNext = () => {
     if (currentSlice + projectsPerPage < filteredProjects.length) {
@@ -48,7 +52,6 @@ function Projects() {
       setCurrentSlice(currentSlice - projectsPerPage);
     }
   };
-
 
   return (
     <div className="Projects">
@@ -83,15 +86,15 @@ function Projects() {
           .map((project, index) => (
             <Link
               key={index}
-              to={`/project/${project.name}`}
+              to={`/project/${project.Name}`}
               className="project-item"
             >
               <img
                 src={Project}
-                alt={`Image for ${project.name}`}
+                alt={`Image for ${project.Name}`}
                 className="Project"
               />
-              <h3>{project.name}</h3>
+              <h3>{project.Name}</h3>
             </Link>
           ))}
         <IconButton className="arrow-right" onClick={handleClickNext}>

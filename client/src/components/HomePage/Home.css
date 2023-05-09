@@ -16,6 +16,13 @@ body {
   margin: auto;
 
 }
+.shape {
+  width: 100px;
+  height: 100px;
+  background-color: blue;
+  shape-outside: circle(50%);
+}
+
 
 .home-page-content {
   position: absolute;

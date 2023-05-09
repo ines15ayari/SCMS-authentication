@@ -84,7 +84,6 @@ function Tickets() {
         <Box className="tickets-content">
           <Box className="ticket-search-container">
             <TextField
-            
               label="Ticket name"
               variant="outlined"
               className="ticket-search-input"
@@ -96,10 +95,9 @@ function Tickets() {
                     <SearchIcon />
                   </InputAdornment>
                 ),
-                sx: { marginRight: '1rem' }
               }}
             />
-            <FormControl variant="outlined" style={{width:"60px"}}>
+            <FormControl variant="outlined">
               <InputLabel id="priority-label">Priority</InputLabel>
               <Select
                 labelId="priority-label"

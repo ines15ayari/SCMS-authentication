@@ -9,6 +9,9 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  email: {
+    type: String,
+  },
   tickets: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Ticket',

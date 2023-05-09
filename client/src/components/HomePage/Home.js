@@ -17,6 +17,10 @@ function Home() {
         style={{ fontFamily: "imprima, sans-serif", color: "black" }}
       >
         <h1>Welcome!</h1>
+        
+        <img id="image1" src={Shdw1} alt="My Image1" />
+        <img id="image1" src={Shdw2} alt="My Image1" />
+
         <p>
           Our platform makes it easy to track, resolve, and respond to customer
           complaints. Sign up today and start managing your complaints like a
